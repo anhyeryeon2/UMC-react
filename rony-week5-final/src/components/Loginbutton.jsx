@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function LoginButton() {
   const [isLogin, setIsLogin] = useState(false);
+  const navigate = useNavigate(); //추가
 
   const handleLoginClick = () => {
     setIsLogin(true);
+    navigate('/login');// 추가 
   };
 
   const handleLogoutClick = () => {

@@ -6,7 +6,8 @@ import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
-
+import LoginButton from "./components/Loginbutton";
+import LoginPage from "./components/LoginPage";
 function App() {
   return (
     <div >
@@ -18,7 +19,9 @@ function App() {
           <Route path="/tv" element={<Tv />} />
           <Route path="/person" element={<Celebrity />} />
           <Route path="/*" element={<NotFound />} />
-          <Route path="/movie/:title" element={<MovieDetail />} />        
+          <Route path="/movie/:title" element={<MovieDetail />} />       
+          <Route path="/" element={<LoginButton />} />  
+          <Route path="/login" element={<LoginPage />} /> 
         </Routes>
       </BrowserRouter>
     </div>
