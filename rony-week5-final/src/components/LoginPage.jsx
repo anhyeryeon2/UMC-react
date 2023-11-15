@@ -1,34 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
 function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-
-
-  const validateEmail = (email) => {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setEmailError('');
-
-    if (!validateEmail(email)) {
-      setEmailError('잘못된 이메일 형식입니다.');
-      return; 
-    }
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
       <h2 className="text-2xl font-bold mb-5">이메일과 비밀번호를 입력해주세요</h2>
-      <form className="w-1/3 p-6" onSubmit={handleSubmit}>
+      <form className="w-1/3 p-6" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
             이메일 주소
@@ -38,10 +21,11 @@ function LoginPage() {
             id="email" 
             type="text" 
             placeholder="email"
-            value={email}
-            onChange={handleEmailChange}   //이게뭔지 !!!!
+            {...register("email", { required: "이메일은 필수입니다.",pattern: {
+              value: /^\S+@\S+$/i, 
+              message: "잘못된 이메일 형식입니다."} })}
           />
-          {emailError && <p className="text-red-500 text-xs">{emailError}</p>}
+          {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
         </div>
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
@@ -52,9 +36,9 @@ function LoginPage() {
             id="password" 
             type="password" 
             placeholder="영문, 숫자, 특수문자 포함 8자 이상"
-            // value={password} //????
-            // onChange={handlePasswordChange}//??????
+            {...register("password", { required: "비밀번호는 필수입니다." })}
           />
+          {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
         </div>
         <div className="flex justify-center">
           <button 
