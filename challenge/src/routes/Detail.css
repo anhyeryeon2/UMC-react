@@ -1,0 +1,48 @@
+.detail-container {
+    max-width: 800px; /* Adjust the width as needed */
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .detail-container img {
+    max-width: 100%; /* Ensures image is not bigger than its container */
+    height: auto; /* Maintains aspect ratio */
+    border-radius: 8px; /* Optional: Rounds the corners of the image */
+  }
+  
+  .detail-container h1 {
+    font-size: 2rem;
+    margin-top: 20px;
+  }
+  
+  .detail-container p {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .detail-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .detail-container li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #007bff;
+  }
+  
+  .detail-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .detail-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .detail-container h2 {
+    margin-top: 30px;
+    color: #333;
+  }
+  
