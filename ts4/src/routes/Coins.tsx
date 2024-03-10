@@ -44,6 +44,12 @@ const Loader = styled.span`
   text-align: center;
   display: block;
 `;
+const Img = styled.img`
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+`;
+
 
 interface CoinInterface {
   id: string;
@@ -78,7 +84,13 @@ function Coins() {
           <CoinsList>
             {coins.map((coin) => (
               <Coin key={coin.id}>
-                <Link to={`/${coin.id}`}>{coin.name} &rarr;</Link>
+                <Link
+                to={`/${coin.id}`}
+                state={{ name: coin.name, rank: coin.rank }}
+                >
+                <Img src ={`https://raw.githubusercontent.com/ErikThiart/cryptocurrency-icons/master/16/${coin.name .toLowerCase().split(" ").join("-")}.png`} />
+                {coin.name} &rarr;
+              </Link>
               </Coin>
             ))}
           </CoinsList>
